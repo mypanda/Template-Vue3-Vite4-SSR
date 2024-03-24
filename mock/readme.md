@@ -1,0 +1,1 @@
+npx http-server --cors -p 1234

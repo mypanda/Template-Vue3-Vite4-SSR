@@ -31,7 +31,8 @@ export async function createServer(root = process.cwd(), isProd = process.env.NO
           port: hmrPort
         }
       },
-      appType: 'custom'
+      appType: 'custom',
+      envFile: true
     }
 
     // vite = (await import('vite')).createServer(viteConfig)
@@ -57,11 +58,12 @@ export async function createServer(root = process.cwd(), isProd = process.env.NO
         render = (await import('./dist/server/entry-server.js')).render
       }
   
-      const [appHtml, preloadLinks] = await render(url, manifest)
+      const [appHtml, pinia, preloadLinks] = await render(url, manifest)
   
       const html = template
         .replace(`<!--preload-links-->`, preloadLinks)
         .replace(`<!--app-html-->`, appHtml)
+        .replace('<!--pinia-state-->', pinia)
   
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (error) {

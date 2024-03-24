@@ -1,5 +1,5 @@
 <script setup>
-// import { Suspense } from 'vue'
+
 // import { RouterLink, RouterView } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import HelloWorld from './components/HelloWorld.vue'
@@ -10,7 +10,6 @@ const store = useCounterStore()
 const { doubleCount } = storeToRefs(store)
 // const hanldeClick = () => store.increment()
 const { increment } = store
-
 </script>
 
 <template>
@@ -27,6 +26,7 @@ const { increment } = store
         <router-link to="/">Home</router-link>|
         <router-link to="/about">About</router-link>|
         <router-link to="/store">store</router-link>
+        <router-link to="/user">user</router-link>
       </nav>
     </div>
   </header>
